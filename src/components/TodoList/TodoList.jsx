@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import AddTodo from '../AddTodo/AddTodo';
+import Todo from '../Todo/Todo';
 
 export default function TodoList() {
   const [todos, setTodos] = useState([
@@ -10,14 +11,28 @@ export default function TodoList() {
   const handleAdd = (newTodo) => {
     setTodos([...todos, newTodo])
   }
+
+  const handleUpdate = (updated) =>{ 
+    setTodos(todos.map((todo) => (todo.id === updated.id ? updated : todo)));
+  }
+  
+  const handleDelete = (deleted) =>
+    setTodos(todos.filter((todo) => todo.id !== deleted.id));
   return (
     <section>
       <AddTodo handleAdd={handleAdd}/>
       <ul>
-        {todos.map((item) => (
-          <li key={item.id}>{item.text}</li>
-        ))}
-      </ul>
-    </section>
-  );
-}
+        {todos.map((todo) => (
+            <Todo 
+              key={todo.id} 
+              todo={todo} 
+              handleUpdate={handleUpdate} 
+              handleDelete={handleDelete}
+            />
+          ))}
+        </ul>
+      </section>
+    );
+  }
+              
+            
