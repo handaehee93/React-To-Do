@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import AddTodo from '../AddTodo/AddTodo';
 import Todo from '../Todo/Todo';
+import styles from './TodoList.module.css'
 
 export default function TodoList({filter}) {
   const [todos, setTodos] = useState([
@@ -29,9 +30,8 @@ export default function TodoList({filter}) {
   // map을 통해 나열하기 위해 함수를 호출하고 값을 변수에 담은 것
   const filtered = getFilteredItems(todos, filter);
   return (
-    <section>
-      <AddTodo handleAdd={handleAdd}/>
-      <ul>
+    <section className={styles.container}>
+      <ul className={styles.list}>
         {filtered.map((todo) => (
             <Todo 
               key={todo.id} 
@@ -41,8 +41,10 @@ export default function TodoList({filter}) {
             />
           ))}
         </ul>
+      <AddTodo handleAdd={handleAdd}/>
       </section>
     );
   }
+
               
             
