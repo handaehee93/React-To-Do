@@ -16,12 +16,12 @@ export default function Todo({ todo, handleUpdate, handleDelete }) {
       <input
         className={styles.checkbox}
         type='checkbox'
-        id='checkbox'
+        id={todo.id}
         //status가 completed면 체크가 되어 있도록 해준 것
         checked={todo.status === 'completed'}
         onChange={handleChange}
       />
-      <label htmlFor='checkbox' className={styles.text}>{todo.text}</label>
+      <label htmlFor={todo.id} className={styles.text}>{todo.text}</label>
       <span className={styles.icon}>
         <button onClick={onDelete} className={styles.button}>
           <FaTrashAlt />
